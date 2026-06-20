@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NG体育 · 运动生活的自然延伸</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fce7c8 0%, #f8d5b0 40%, #f3c49a 80%, #f0bc88 100%);
+            font-family: 'Segoe UI', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1.5rem;
+            line-height: 1.65;
+            color: #3e2c1a;
+        }
+
+        .card {
+            max-width: 840px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(6px);
+            border-radius: 40px;
+            padding: 2.8rem 3.2rem;
+            box-shadow: 0 20px 40px -12px rgba(160, 100, 50, 0.25), 0 8px 16px -6px rgba(80, 50, 20, 0.08);
+            transition: box-shadow 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 28px 48px -14px rgba(140, 80, 30, 0.30);
+        }
+
+        /* hero 区 */
+        .hero {
+            text-align: center;
+            margin-bottom: 2.4rem;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            background: linear-gradient(145deg, #a46b3c, #7c532e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            color: #7a5d44;
+            background: rgba(200, 155, 110, 0.18);
+            display: inline-block;
+            padding: 0.2rem 1.6rem;
+            border-radius: 30px;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        /* 摘要区 */
+        .summary {
+            background: rgba(245, 225, 200, 0.30);
+            padding: 1.4rem 1.8rem;
+            border-radius: 28px;
+            margin: 1.8rem 0 2.2rem 0;
+            border-left: 5px solid #c18e5e;
+            font-size: 1.02rem;
+            color: #3d2b19;
+        }
+
+        .summary p {
+            margin-bottom: 0.6rem;
+        }
+
+        .summary p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 亮点网格 */
+        .highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem 1.8rem;
+            margin: 2.2rem 0 2rem;
+        }
+
+        .highlight-item {
+            background: #fefcf8;
+            border-radius: 24px;
+            padding: 1.2rem 1.5rem;
+            box-shadow: 0 4px 10px -4px rgba(120, 70, 30, 0.08);
+            transition: transform 0.2s ease, background 0.2s;
+            border: 1px solid rgba(200, 160, 120, 0.15);
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-3px);
+            background: #fffcf7;
+        }
+
+        .highlight-item .icon {
+            font-size: 1.8rem;
+            display: inline-block;
+            margin-bottom: 0.2rem;
+            color: #b47b4a;
+        }
+
+        .highlight-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #684b2e;
+            margin-bottom: 0.3rem;
+        }
+
+        .highlight-item p {
+            font-size: 0.92rem;
+            color: #5d4732;
+        }
+
+        /* 使用建议 / 场景 */
+        .usage-section {
+            background: #fcf6ee;
+            border-radius: 28px;
+            padding: 1.6rem 1.8rem;
+            margin: 1.8rem 0 2rem;
+        }
+
+        .usage-section h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #7c562e;
+            border-bottom: 2px dashed #dbb590;
+            padding-bottom: 0.4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .usage-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.6rem;
+        }
+
+        .usage-block {
+            flex: 1 1 200px;
+        }
+
+        .usage-block .num {
+            font-weight: 600;
+            color: #b47b4a;
+            font-size: 1.2rem;
+            margin-right: 0.4rem;
+        }
+
+        .usage-block p {
+            font-size: 0.95rem;
+            color: #40301d;
+        }
+
+        /* 提示 / FAQ 摘要 */
+        .faq-note {
+            background: #faf2e9;
+            border-radius: 28px;
+            padding: 1.4rem 1.8rem;
+            margin: 1.8rem 0 1.8rem;
+        }
+
+        .faq-note details {
+            margin-bottom: 0.6rem;
+            border-bottom: 1px solid #e6d2bd;
+            padding-bottom: 0.6rem;
+        }
+
+        .faq-note details:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .faq-note summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #634a2f;
+            font-size: 0.98rem;
+            padding: 0.2rem 0;
+        }
+
+        .faq-note summary::-webkit-details-marker {
+            color: #b47b4a;
+        }
+
+        .faq-note .answer {
+            padding: 0.5rem 0 0.2rem 0.8rem;
+            font-size: 0.92rem;
+            color: #4f3b26;
+        }
+
+        /* 可信说明 + 链接句子 */
+        .trust-note {
+            text-align: center;
+            padding: 1.2rem 0.5rem 0.2rem;
+            border-top: 1px solid #e2cfba;
+            margin-top: 1rem;
+        }
+
+        .trust-note p {
+            font-size: 0.94rem;
+            color: #5b4733;
+        }
+
+        .trust-note a {
+            color: #8a613b;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0.1rem 0.6rem;
+            border-radius: 40px;
+            background: rgba(193, 142, 94, 0.10);
+            transition: background 0.25s, color 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .trust-note a:hover {
+            background: rgba(193, 142, 94, 0.25);
+            color: #654222;
+            border-bottom-color: #b47b4a;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            .card {
+                padding: 2rem 1.6rem;
+                border-radius: 30px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .highlights {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .usage-columns {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .summary {
+                padding: 1.2rem;
+            }
+
+            .faq-note {
+                padding: 1.2rem;
+            }
+        }
+
+        @media (max-width: 460px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+
+            .card {
+                padding: 1.6rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .highlight-item {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- hero -->
+        <div class="hero">
+            <h1>NG 体育</h1>
+            <div class="sub">运动 · 节奏 · 日常</div>
+        </div>
+
+        <!-- 摘要：从主题展开 -->
+        <div class="summary">
+            <p>体育活动不只是竞技，更是生活里一种稳定的呼吸。无论你习惯清晨慢跑、傍晚拉伸，还是周末约一场球赛，运动的节奏总能让人更专注、更放松。NG体育所关注的，正是这种将身体活动自然融入日常的方式——没有门槛，也不设限。</p>
+            <p>我们相信，体育的价值在于持续与自洽。一个简单的动作，重复千次，便成了习惯；而习惯，最终会改变生活的质地。</p>
+        </div>
+
+        <!-- 亮点 -->
+        <div class="highlights">
+            <div class="highlight-item">
+                <div class="icon">✦</div>
+                <h3>低门槛参与</h3>
+                <p>不需要专业设备或场地，从步行、居家训练到户外休闲，都可以找到适合自己的节奏。</p>
+            </div>
+            <div class="highlight-item">
+                <div class="icon">✦</div>
+                <h3>信息与灵感</h3>
+                <p>提供运动知识、训练思路与恢复建议，帮助你在不同阶段调整方式，保持新鲜感。</p>
+            </div>
+            <div class="highlight-item">
+                <div class="icon">✦</div>
+                <h3>温和的社群氛围</h3>
+                <p>不鼓吹极限与比较，更关注个人进步与相互鼓励。分享经验，也倾听困惑。</p>
+            </div>
+            <div class="highlight-item">
+                <div class="icon">✦</div>
+                <h3>尊重个人节奏</h3>
+                <p>每个人的身体状态与目标不同，NG体育提倡循序渐进，避免盲目跟从。</p>
+            </div>
+        </div>
+
+        <!-- 使用建议 / 场景 -->
+        <div class="usage-section">
+            <h2>如何融入日常</h2>
+            <div class="usage-columns">
+                <div class="usage-block">
+                    <p><span class="num">01</span> 每周选两到三个固定时段，做同一种低强度运动，让身体记住节奏。</p>
+                </div>
+                <div class="usage-block">
+                    <p><span class="num">02</span> 交替进行力量与柔韧性练习，避免单一重复带来的疲劳或损伤。</p>
+                </div>
+                <div class="usage-block">
+                    <p><span class="num">03</span> 记录每次运动后的感受，而不只关注时长或次数，更能觉察进步。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要 (简洁) -->
+        <div class="faq-note">
+            <details>
+                <summary>NG体育是否适合运动新手？</summary>
+                <div class="answer">是的，页面内容面向不同基础的人，重点在于找到可持续的方式，而不是追求强度。建议从每天15分钟的低冲击活动开始。</div>
+            </details>
+            <details>
+                <summary>内容会经常更新吗？</summary>
+                <div class="answer">会结合季节、常见问题以及运动科学的新思路进行补充，保持信息的实用性，但不追求频繁发布。</div>
+            </details>
+            <details>
+                <summary>需要注册或下载应用吗？</summary>
+                <div class="answer">不需要。所有内容均通过网页直接浏览，没有额外的注册或安装步骤。</div>
+            </details>
+        </div>
+
+        <!-- 可信但克制的访问说明 + 链接 -->
+        <div class="trust-note">
+            <p>更多关于运动习惯、训练思路与恢复方法的讨论，可以在 <a href="https://pages-ngsports.com">NG体育</a> 找到持续更新的内容。我们保持真实与克制的表达，不承诺奇迹，只陪伴实践。</p>
+            <p style="margin-top: 0.6rem; font-size: 0.88rem; color: #7a624b;">—— 以温和的方式，让运动回归生活本身。</p>
+        </div>
+    </div>
+</body>
+</html>
